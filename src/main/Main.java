@@ -1,3 +1,5 @@
+import gui.MainScreen;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -10,5 +12,7 @@ public class Main {
 
         game.setBoard(SudokuGenerator.generateUnsolvedBoard(45));
         System.out.println(game.getBoard());
+
+        new MainScreen();
     }
 }
