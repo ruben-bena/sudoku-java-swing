@@ -7,9 +7,10 @@ public class SudokuBoard {
     public SudokuBoard() {
 
         this.board = new SudokuCell[9][9];
-        for (SudokuCell[] row : board) {
-            for (SudokuCell cell : row) {
-                cell.setValue(0);
+        for (int i=0 ; i<9 ; i++) {
+            for (int j=0 ; j<9 ; j++) {
+
+                board[i][j] = new SudokuCell();
             }
         }
     }
@@ -105,6 +106,11 @@ public class SudokuBoard {
         }
 
         return true;
+    }
+
+    public SudokuCell getCell(int i, int j) {
+        
+        return board[i][j];
     }
 
     @Override
