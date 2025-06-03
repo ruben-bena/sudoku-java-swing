@@ -5,7 +5,7 @@ public class SudokuCell {
 
     public SudokuCell() {
         this.value = 0;
-        this.canBeChanged = true;
+        this.canBeChanged = false;
     }
 
     public int getValue() {

@@ -125,7 +125,11 @@ public class SudokuBoard {
             String rowString = "";
             for (int col=0 ; col<board[row].length ; col++) {
 
-                rowString += String.format("| %1d ", board[row][col].getValue());
+                if (board[row][col].getValue() != 0) {
+                    rowString += String.format("| %1d ", board[row][col].getValue());
+                } else {
+                    rowString += "|   ";
+                }
             }
 
             result += rowString + "|\n" + betweenRows + "\n";

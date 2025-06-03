@@ -11,7 +11,7 @@ public class SudokuGenerator {
 
         fillBoard(board);
 
-        return new SudokuBoard();
+        return board;
     }
 
     public static void solveBoard(SudokuBoard board) {
@@ -26,29 +26,10 @@ public class SudokuGenerator {
 
     private static boolean fillBoard(SudokuBoard board, int i, int j) {
 
-        
-
-        // Creo array de números del 1 al 9 mezclados aleatoriamente
-
-        // Recorro el array (for):
-        
-        //     asigno numero a celda
-
-        //     si el tablero es valido con ese numero:
-        //         si los indices corresponden a la ultima celda del board:
-        //             caso base (return)
-        //         else:
-        //             llamo a la funcion con el siguiente par de indices
-        //     else:
-        //         borro el valor de la celda
-        //         continuo con el bucle
-
-        // si recorro todo el bucle y ningun numero me daba un tablero valido:
-        //     vuelvo a la iteración anterior y continuo el proceso
-
         ArrayList<Integer> numArray = generateArrayWithRandomNum();
 
         for (int num : numArray) {
+
             if (board.getCell(i, j).getValue() == 0) {
                 board.getCell(i, j).setValue(num);
             }
@@ -92,7 +73,23 @@ public class SudokuGenerator {
     }
 
     // uses generateSolvedSudoku() and then substract some numbers keeping 1 valid solution
-    public static SudokuBoard generateUnsolvedBoard() {
-        return new SudokuBoard();
+    public static SudokuBoard generateUnsolvedBoard(int deletedCells) {
+        SudokuBoard board = SudokuGenerator.generateSolvedBoard();
+
+        int counter = 0;
+        do {
+
+            int i = (int) (Math.random() * 9);
+            int j = (int) (Math.random() * 9);
+            if (board.getCell(i, j).getValue() != 0) {
+
+                board.getCell(i, j).setValue(0);
+                board.getCell(i, j).setCanBeChanged(true);
+                counter++;
+            }
+
+        } while (counter < deletedCells);
+
+        return board;
     }
 }
